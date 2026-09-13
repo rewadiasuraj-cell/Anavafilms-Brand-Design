@@ -1,0 +1,7 @@
+.agents/
+.qa/
+skills-lock.json
+skills-*
+.DS_Store
+node_modules/
+.netlify/
