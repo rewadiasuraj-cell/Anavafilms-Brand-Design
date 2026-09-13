@@ -217,3 +217,4 @@ nav.workflow-nav{display:flex;position:static;flex-direction:row;flex-wrap:wrap;
  .workflow-list{gap:10px 20px;font-size:15px}
 }
 @media(max-width:380px){.workflow-list{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:768px){.hero p{text-align:center}}
