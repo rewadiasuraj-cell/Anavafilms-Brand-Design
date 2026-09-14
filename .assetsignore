@@ -1,0 +1,12 @@
+.git
+.gitignore
+.assetsignore
+node_modules
+.wrangler
+wrangler.jsonc
+.netlify
+.agents
+.qa
+skills-lock.json
+skills-*
+.DS_Store
