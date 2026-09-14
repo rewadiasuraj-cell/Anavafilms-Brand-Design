@@ -105,7 +105,7 @@ h1,h2,h3,p,.connect-link span{overflow-wrap:break-word}
  .card h3,.archive-caption h3{line-height:1.25;letter-spacing:-.035em}
  .card small{line-height:1.5}
  .film-stage{height:auto;aspect-ratio:4/3;max-height:480px}.film img{object-position:33% 40%}.card[data-project="sunil-shetty-brand-film"] img{object-position:30% 40%}
- .film-label{left:6%;right:6%;max-width:none;bottom:50px}
+ .film-label{left:6%;right:6%;max-width:none;bottom:20px}
  .film-label h2{font-size:clamp(22px,6.2vw,34px);line-height:1.15;letter-spacing:-.045em;margin:8px 0}
  .film-label p{font-size:10px;line-height:1.6}
  .play{right:6%;bottom:24px}
