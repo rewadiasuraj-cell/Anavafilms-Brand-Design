@@ -104,7 +104,7 @@ h1,h2,h3,p,.connect-link span{overflow-wrap:break-word}
  .card-meta{align-items:flex-start;flex-direction:column;gap:7px}
  .card h3,.archive-caption h3{line-height:1.25;letter-spacing:-.035em}
  .card small{line-height:1.5}
- .film-stage{height:clamp(340px,110vw,470px)}
+ .film-stage{height:auto;aspect-ratio:4/3;max-height:480px}.film img{object-position:40% 40%}
  .film-label{left:6%;right:6%;max-width:none;bottom:95px}
  .film-label h2{font-size:clamp(29px,8vw,48px);line-height:1.12;letter-spacing:-.045em}
  .film-label p{font-size:10px;line-height:1.6}
@@ -135,7 +135,7 @@ button,a{touch-action:manipulation}
 @media(hover:none){.card:hover img{scale:1;filter:none}.archive-card:hover .archive-image>img,.archive-card:hover .archive-image>video{transform:none}.card:hover .open-arrow,.archive-card:hover .archive-open{transform:none}.archive-card,.archive-image>img,.archive-image>video{transform:none!important}.card:hover .card-image,.archive-card:hover .archive-image{box-shadow:0 2px 10px rgba(23,20,16,.07)}}
 @media(min-width:761px) and (max-width:1100px){
  .card-meta{flex-wrap:wrap;gap:8px}
- .card-image,.card:nth-child(even) .card-image{height:350px}
+ .card-image,.card:nth-child(even) .card-image{height:auto;aspect-ratio:4/3}.film img{object-position:40% 40%}
  .grid{gap:30px}.slate-section{gap:4%;padding:48px 4%}
  .slate-body{padding:18px}.slate-fields>div{padding:13px 7px}
 }
