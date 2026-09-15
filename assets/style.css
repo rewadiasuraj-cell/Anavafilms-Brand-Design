@@ -46,7 +46,8 @@
 .location-tag{position:absolute;top:28px;right:28px;text-align:right;font-family:Georgia,serif;font-style:italic;font-size:14px;line-height:1.4;color:rgba(255,255,255,.75)}
 .location-tile .location-address{color:rgba(255,255,255,.75);font-size:14px;line-height:1.7;margin:auto 0 18px;padding-top:24px}
 .location-tile .connect-link{color:#fff}
-.collab-section{position:relative;overflow:hidden;margin:0 3% 90px;padding:110px 5%;text-align:center;background:#111110;color:#fff;border-radius:28px}
+.collab-section{position:relative;overflow:hidden;max-width:1700px;margin:0 3% 90px;padding:110px 5%;text-align:center;background:#111110;color:#fff;border-radius:28px}
+@media(min-width:1700px){.collab-section{margin:0 auto 90px}}
 .collab-watermark{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:clamp(160px,26vw,420px);font-weight:800;letter-spacing:-.06em;color:rgba(255,255,255,.045);white-space:nowrap;pointer-events:none;line-height:1}
 .collab-section .eyebrow{position:relative;color:#e6a488}
 .collab-section h2{position:relative;font-size:clamp(34px,5vw,62px);line-height:1.15;letter-spacing:-.045em;font-weight:500;margin:14px 0 34px}
@@ -69,9 +70,10 @@
  .locations-grid{grid-template-columns:1fr;gap:18px}
  .location-tile{min-height:200px;padding:24px}
  .collab-section{margin:0 4% 56px;padding:70px 6%;border-radius:20px}
- .collab-meta{gap:10px 0;font-size:10px}
- .collab-meta span{flex:0 0 48%}
- .collab-meta span:nth-child(odd):after{display:none}
+ .collab-meta{gap:12px 0;font-size:10px}
+ .collab-meta span{flex:0 0 50%;display:inline-flex;align-items:center;justify-content:center}
+ .collab-meta span:nth-child(odd):after{content:'|';margin-left:12px;color:#4a4a45}
+ .collab-meta span:nth-child(even):after{display:none}
 }
 .photo-intro{margin-bottom:50px;max-width:680px}
 .photo-intro h2{font-size:40px;letter-spacing:-1.5px;margin:0 0 12px}
