@@ -272,17 +272,18 @@ input::placeholder,textarea::placeholder{color:var(--muted);opacity:.75}
 @media(hover:none){.archive-card[data-video-mode="click"] .archive-image{filter:grayscale(1)}.archive-card[data-video-mode="click"] .archive-image.playing{filter:grayscale(0)}}
 
 /* Auto-scrolling client logo marquee ticker */
-.logo-marquee-section{background:#111110;padding:28px 0;overflow:hidden;position:relative;margin:40px 0 60px;border-block:1px solid #222220}
+.logo-marquee-section{background:var(--surface);padding:28px 0;overflow:hidden;position:relative;margin:40px 0 60px;border-block:1px solid var(--border)}
 .logo-marquee-section:before,.logo-marquee-section:after{content:'';position:absolute;top:0;bottom:0;width:90px;z-index:2;pointer-events:none}
-.logo-marquee-section:before{left:0;background:linear-gradient(90deg,#111110,transparent)}
-.logo-marquee-section:after{right:0;background:linear-gradient(-90deg,#111110,transparent)}
+.logo-marquee-section:before{left:0;background:linear-gradient(90deg,var(--surface),transparent)}
+.logo-marquee-section:after{right:0;background:linear-gradient(-90deg,var(--surface),transparent)}
 .logo-marquee{display:flex;overflow:hidden;user-select:none}
 .logo-marquee-track{display:flex;align-items:center;white-space:nowrap;will-change:transform;animation:logo-scroll 32s linear infinite}
 .logo-marquee:hover .logo-marquee-track{animation-play-state:paused}
 .logo-item{display:inline-flex;align-items:center;gap:45px;padding:0 22px;flex-shrink:0}
-.logo-item img{height:30px;width:auto;max-width:140px;object-fit:contain;opacity:.85;transition:opacity .3s ease}
+.logo-item img{height:30px;width:auto;max-width:140px;object-fit:contain;filter:brightness(0);opacity:.8;transition:opacity .3s ease,filter .3s ease}
+[data-theme="dark"] .logo-item img{filter:brightness(0) invert(1);opacity:.85}
 .logo-item:hover img{opacity:1}
-.logo-divider{display:inline-block;width:1px;height:24px;background:rgba(255,255,255,.16);flex-shrink:0}
+.logo-divider{display:inline-block;width:1px;height:24px;background:var(--line);flex-shrink:0}
 @keyframes logo-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @media(max-width:760px){
  .logo-marquee-section{padding:20px 0;margin:25px 0 40px}
