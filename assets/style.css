@@ -292,7 +292,7 @@ input::placeholder,textarea::placeholder{color:var(--muted);opacity:.75}
 .logo-marquee-section:before{left:0;background:linear-gradient(90deg,var(--surface),transparent)}
 .logo-marquee-section:after{right:0;background:linear-gradient(-90deg,var(--surface),transparent)}
 .logo-marquee{display:flex;overflow:hidden;user-select:none}
-.logo-marquee-track{display:flex;align-items:center;white-space:nowrap;will-change:transform;animation:logo-scroll 32s linear infinite}
+.logo-marquee-track{display:flex;align-items:center;white-space:nowrap;will-change:transform;animation:logo-scroll 16s linear infinite}
 .logo-marquee:hover .logo-marquee-track{animation-play-state:paused}
 .logo-item{display:inline-flex;align-items:center;gap:45px;padding:0 22px;flex-shrink:0}
 .logo-item img{height:30px;width:auto;max-width:140px;object-fit:contain;filter:brightness(0);opacity:.8;transition:opacity .3s ease,filter .3s ease}
