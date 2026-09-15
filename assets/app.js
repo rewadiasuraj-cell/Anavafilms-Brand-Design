@@ -31,6 +31,10 @@ function initLenis(){
   window.lenis=lenis;
 }
 initLenis();
+const headerEl=document.querySelector('header');
+function onHeaderScroll(){if(headerEl)headerEl.classList.toggle('scrolled',window.scrollY>40)}
+onHeaderScroll();
+window.addEventListener('scroll',onHeaderScroll,{passive:true});
 const interactionTweens=new Set();
 function settleInteractions(){interactionTweens.forEach(t=>{t.progress(1);t.kill()});interactionTweens.clear()}
 reducedMotion.addEventListener('change',e=>{
