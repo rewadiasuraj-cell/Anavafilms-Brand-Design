@@ -238,8 +238,10 @@ nav.workflow-nav{display:flex;position:static;flex-direction:row;flex-wrap:wrap;
 }
 @media(max-width:380px){.workflow-list{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:768px){.hero p{text-align:center}}
-[data-theme="dark"] h1,[data-theme="dark"] h2,[data-theme="dark"] h3{color:var(--accent)}
-[data-theme="dark"] .hero-bottom,[data-theme="dark"] .num,[data-theme="dark"] .empty,[data-theme="dark"] .sample,[data-theme="dark"] .work-overline,[data-theme="dark"] .archive-note,[data-theme="dark"] .archive-title>span,[data-theme="dark"] .archive-caption>span,[data-theme="dark"] .slate-input-meta,[data-theme="dark"] .slate-status,[data-theme="dark"] .slate-direct-link,[data-theme="dark"] .workflow-list,[data-theme="dark"] .contact-layout p,[data-theme="dark"] .page-head p,[data-theme="dark"] .detail p,[data-theme="dark"] .person p,[data-theme="dark"] .person small,[data-theme="dark"] footer p,[data-theme="dark"] footer small,[data-theme="dark"] nav a{color:var(--muted)}
+input::placeholder,textarea::placeholder{color:var(--muted);opacity:.75}
+[data-theme="dark"] .hero-bottom,[data-theme="dark"] .num,[data-theme="dark"] .empty,[data-theme="dark"] .sample,[data-theme="dark"] .work-overline,[data-theme="dark"] .archive-note,[data-theme="dark"] .archive-title>span,[data-theme="dark"] .archive-caption>span,[data-theme="dark"] .archive-caption small,[data-theme="dark"] .archive-format,[data-theme="dark"] .archive-empty p,[data-theme="dark"] .work-heading p,[data-theme="dark"] .slate-input-meta,[data-theme="dark"] .slate-status,[data-theme="dark"] .slate-direct-link,[data-theme="dark"] .slate-scene-caption,[data-theme="dark"] .workflow-list,[data-theme="dark"] .workflow-post,[data-theme="dark"] .workflow-copy p,[data-theme="dark"] .photo-intro p,[data-theme="dark"] .contact-layout p,[data-theme="dark"] .page-head p,[data-theme="dark"] .detail p,[data-theme="dark"] .role-label,[data-theme="dark"] .person p,[data-theme="dark"] .person small,[data-theme="dark"] footer p,[data-theme="dark"] footer small,[data-theme="dark"] nav a{color:var(--muted)}
+[data-theme="dark"] nav.workflow-nav small{color:var(--accent)}
+[data-theme="dark"] .form-status{color:var(--accent)!important}
 [data-theme="dark"] nav a:hover,[data-theme="dark"] nav a.active{color:var(--ink)}
 [data-theme="dark"] .pill.light{background:var(--surface);color:var(--ink)}
 [data-theme="dark"] .work-end>a,[data-theme="dark"] .text-link{color:var(--ink)}
