@@ -33,13 +33,18 @@
 .locations-section h2{font-size:clamp(34px,4vw,52px);letter-spacing:-.045em;line-height:1.12;font-weight:500;margin:14px 0 0}
 .locations-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:44px}
 .location-tile{position:relative;overflow:hidden;border-radius:16px;padding:28px;min-height:230px;display:flex;flex-direction:column;color:#fff;background:#15151a;border:1px solid #2a2a30}
-.location-tile.loc-mumbai{background:radial-gradient(120% 140% at 100% 0%,#3a2452 0%,#1b1830 45%,#101018 100%)}
-.location-tile.loc-delhi{background:radial-gradient(120% 140% at 100% 0%,#4a2a10 0%,#2a1c14 45%,#101012 100%)}
+.location-tile-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.location-tile-bg img{width:100%;height:100%;object-fit:cover;object-position:center;opacity:.55;transition:transform .8s cubic-bezier(.2,.7,.2,1),opacity .8s cubic-bezier(.2,.7,.2,1)}
+.location-tile:hover .location-tile-bg img{transform:scale(1.05);opacity:.65}
+.location-tile-bg:after{content:'';position:absolute;inset:0}
+.location-tile.loc-mumbai .location-tile-bg:after{background:linear-gradient(135deg,rgba(16,14,24,.88) 0%,rgba(35,20,50,.72) 50%,rgba(16,14,24,.85) 100%),radial-gradient(120% 140% at 100% 0%,rgba(150,70,220,.35) 0%,transparent 65%)}
+.location-tile.loc-delhi .location-tile-bg:after{background:linear-gradient(135deg,rgba(18,14,12,.88) 0%,rgba(45,25,15,.72) 50%,rgba(18,14,12,.85) 100%),radial-gradient(120% 140% at 100% 0%,rgba(230,120,40,.35) 0%,transparent 65%)}
+.location-tile-head,.location-tag,.location-tile .location-address,.location-tile .connect-link{position:relative;z-index:1}
 .location-tile-head{display:flex;align-items:center;gap:10px}
 .location-tile h3{font-size:22px;font-weight:600;letter-spacing:-.02em;margin:0}
 .hq-tag{font-size:10px;letter-spacing:.5px;font-weight:600;background:rgba(255,255,255,.15);border-radius:6px;padding:3px 7px}
-.location-tag{position:absolute;top:28px;right:28px;text-align:right;font-family:Georgia,serif;font-style:italic;font-size:14px;line-height:1.4;color:rgba(255,255,255,.55)}
-.location-tile .location-address{color:rgba(255,255,255,.6);font-size:14px;line-height:1.7;margin:auto 0 18px;padding-top:24px}
+.location-tag{position:absolute;top:28px;right:28px;text-align:right;font-family:Georgia,serif;font-style:italic;font-size:14px;line-height:1.4;color:rgba(255,255,255,.75)}
+.location-tile .location-address{color:rgba(255,255,255,.75);font-size:14px;line-height:1.7;margin:auto 0 18px;padding-top:24px}
 .location-tile .connect-link{color:#fff}
 .collab-section{position:relative;overflow:hidden;margin:0 3% 90px;padding:110px 5%;text-align:center;background:#111110;color:#fff;border-radius:28px}
 .collab-watermark{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:clamp(160px,26vw,420px);font-weight:800;letter-spacing:-.06em;color:rgba(255,255,255,.045);white-space:nowrap;pointer-events:none;line-height:1}
