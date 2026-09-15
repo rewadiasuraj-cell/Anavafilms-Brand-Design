@@ -272,6 +272,7 @@ input::placeholder,textarea::placeholder{color:var(--muted);opacity:.75}
 .archive-grid .archive-card.portrait{max-width:none;justify-self:auto;margin-top:0}
 .archive-grid .archive-card.portrait .archive-image{aspect-ratio:16/9}
 .archive-grid.vertical-cols{grid-template-columns:repeat(4,minmax(0,1fr))}
+.archive-grid.events-cols{grid-template-columns:repeat(3,minmax(0,1fr))}
 .archive-grid.vertical-cols .archive-card.portrait{max-width:none;justify-self:auto;margin-top:0}
 .archive-grid.vertical-cols .archive-card.portrait .archive-image{aspect-ratio:3/4}
 .archive-card[data-video-mode="click"] .archive-image{filter:grayscale(1);transition:filter .4s ease}
