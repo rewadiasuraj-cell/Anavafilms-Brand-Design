@@ -316,7 +316,7 @@ input::placeholder,textarea::placeholder{color:var(--muted);opacity:.75}
 .services-hero h1{font-size:clamp(52px,7.5vw,110px);line-height:1.02;letter-spacing:-.07em;font-weight:500;margin:0 auto;max-width:1100px}
 .services-hero h1 em,.film-label h2 em,.services-cta h2 em{font-family:Georgia,serif;font-weight:400;color:var(--accent);font-style:italic}
 .services-hero p{max-width:650px;color:var(--muted);font-size:16px;line-height:1.6;margin:24px auto 0}
-.service-hero-stage{margin-top:20px;margin-bottom:70px}.service-hero-stage .film img{height:120%;object-position:50% 85%;filter:none}.service-hero-stage .film:after{display:none}
+.service-hero-stage{margin-top:20px;margin-bottom:70px}.service-hero-stage .film img{height:100%;object-position:center;filter:none}.service-hero-stage .film:after{display:none}
 .service-cards-section{padding:40px 6% 90px}
 .service-cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
 .service-card{background:var(--surface);color:var(--ink);border:1px solid var(--border);border-radius:20px;padding:36px 28px;display:flex;flex-direction:column;justify-content:space-between;gap:32px;transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease}
