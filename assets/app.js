@@ -82,11 +82,161 @@ function openLightbox(index){if(!currentGallery.length)return;lightboxIndex=inde
 function lightboxNav(dir){if(currentGallery.length<2)return;lightboxIndex=(lightboxIndex+dir+currentGallery.length)%currentGallery.length;const imgs=lightboxImgs();const outgoing=imgs[lightboxLayer];const incoming=imgs[1-lightboxLayer];incoming.src=currentGallery[lightboxIndex];incoming.style.zIndex='2';outgoing.style.zIndex='1';const enterFrom=dir>0?'inset(0 0 0 100%)':'inset(0 100% 0 0)';updateLightboxCounter();if(window.gsap&&!reducedMotion.matches)interactionTween(incoming,{clipPath:enterFrom},{clipPath:'inset(0 0% 0 0)',duration:.36,ease:'power2.inOut',overwrite:true});else incoming.style.clipPath='inset(0 0% 0 0)';lightboxLayer=1-lightboxLayer}
 function closeLightbox(){if(!lightbox.open)return;const front=lightboxImgs()[lightboxLayer];setBackdropVisible(false);lenis?.start();if(window.gsap&&!reducedMotion.matches){const t=gsap.to(front,{clipPath:'inset(0 100% 0 0)',duration:.35,ease:'power2.in',overwrite:true,onComplete:()=>{interactionTweens.delete(t);lightbox.close()},onInterrupt:()=>interactionTweens.delete(t)});interactionTweens.add(t)}else lightbox.close()}
 function photoArchive(p){currentGallery=p.gallery;return `<div class="archive-title"><h2>ANAVA Product &amp; Portrait</h2></div><div class="photo-intro"><span class="eyebrow">${categoryName(p.category)}</span><h2>${p.title}</h2><p>${p.client}</p><div class="detail-columns"><div><h3>THE THOUGHT</h3><p>${p.thought}</p></div><div><h3>THE IDEA</h3><p>${p.idea}</p></div></div><h3>THE MAKING</h3><p>${p.making}</p></div><div class="photo-archive-grid">${p.gallery.map((src,i)=>`<button type="button" class="gallery-thumb" data-lightbox="${src}" data-index="${i}" aria-label="Open full-size image, frame ${i+1} of ${p.gallery.length}"><img src="${src}" alt="${p.title} — photography" loading="lazy"><span class="gallery-number">${String(i+1).padStart(2,'0')}</span></button>`).join('')}</div>`}
-function archiveCollection(category='TVCS',subCategory='ALL'){let list=A.projects.filter(p=>category==='ALL'||p.category===category);if(category==='VERTICAL'&&subCategory!=='ALL'){list=list.filter(p=>p.subCategory===subCategory)}if(category==='PHOTOSHOOTS'){const p=list.find(x=>x.gallery&&x.gallery.length);if(p)return photoArchive(p)}const subFilterHtml=category==='VERTICAL'?`<div class="vertical-sub-filter"><label for="vertical-sub-select">Filter by type:</label><select id="vertical-sub-select" class="vertical-sub-select" aria-label="Filter vertical films by type"><option value="ALL"${subCategory==='ALL'?' selected':''}>All Types</option><option value="Celebrity"${subCategory==='Celebrity'?' selected':''}>Celebrity</option><option value="Influencers"${subCategory==='Influencers'?' selected':''}>Influencers</option><option value="Performance"${subCategory==='Performance'?' selected':''}>Performance</option></select></div>`:'';return `${subFilterHtml}${list.length?`<div class="archive-grid${(category==='VERTICAL'||category==='EVENTS')?' vertical-cols':''}${category==='EVENTS'?' events-cols':''}">${list.map(archiveCard).join('')}</div>`:'<div class="archive-empty"><h3>A new story goes here.</h3><p>This collection is ready for your original projects.</p></div>'}`}
+let verticalSubFilter = 'All';
+
+function setVerticalSubFilter(subCat){
+  verticalSubFilter = subCat;
+  const category = document.querySelector('[data-archive].selected')?.dataset.archive || 'VERTICAL';
+  killGalleryTriggers();
+  document.querySelectorAll('#archive-results video').forEach(v=>v.pause());
+  document.querySelector('#archive-results').innerHTML = archiveCollection(category, verticalSubFilter);
+  initLazyVideos();
+  if(document.querySelector('.archive-card')&&window.gsap&&!reducedMotion.matches){
+    interactionTween('.archive-card',{opacity:0,y:20},{opacity:1,y:0,duration:MOTION.reveal,stagger:MOTION.stagger,ease:MOTION.ease,overwrite:true});
+    ScrollTrigger.refresh();
+  }
+}
+
+function archiveCollection(category='TVCS',subCategory=verticalSubFilter){
+  let list=A.projects.filter(p=>category==='ALL'||p.category===category);
+  if(category==='VERTICAL' && subCategory && subCategory.toLowerCase() !== 'all'){
+    list=list.filter(p=>(p.vertical||'').toLowerCase()===subCategory.toLowerCase());
+  }
+  if(category==='PHOTOSHOOTS'){
+    const p=list.find(x=>x.gallery&&x.gallery.length);
+    if(p)return photoArchive(p);
+  }
+
+  const options=['All','Celebrity','Influencers','Performance'];
+  const currentSub=options.find(o=>o.toLowerCase()===(subCategory||'all').toLowerCase())||'All';
+
+  const subFilterHtml=category==='VERTICAL'?`<div class="vertical-sub-filter"><span class="vertical-sub-label" id="vertical-sub-label">Filter:</span><div class="custom-dropdown" id="vertical-custom-dropdown"><button type="button" class="custom-dropdown-trigger" id="vertical-dropdown-trigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="vertical-dropdown-menu" aria-label="Filter vertical films by type"><span>${currentSub}</span><svg class="dropdown-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><ul class="custom-dropdown-menu" id="vertical-dropdown-menu" role="listbox" aria-labelledby="vertical-sub-label" hidden>${options.map(o=>`<li role="option" data-vertical-option="${o}" aria-selected="${currentSub===o}" class="custom-dropdown-option${currentSub===o?' selected':''}" tabindex="0">${o}</li>`).join('')}</ul></div></div>`:'';
+
+  return `${subFilterHtml}${list.length?`<div class="archive-grid${(category==='VERTICAL'||category==='EVENTS')?' vertical-cols':''}${category==='EVENTS'?' events-cols':''}">${list.map(archiveCard).join('')}</div>`:'<div class="archive-empty"><h3>A new story goes here.</h3><p>This collection is ready for your original projects.</p></div>'}`}
 function work(){return `<div class="work-page"><section class="work-masthead"><div class="work-heading-new"><div><span class="eyebrow">OUR WORK</span><h1>Curated Work.<br><em>Real Impact.</em></h1></div><p>A selection of films, content and campaigns we’ve created for brands across industries.</p></div><div class="archive-categories" aria-label="Project categories">${workCategories.map((c,i)=>`<button data-archive="${c}" aria-pressed="${i===0}" class="${i===0?'selected':''}">${categoryName(c)}</button>`).join('')}</div></section><section class="work-archive" id="work-archive"><div id="archive-results">${archiveCollection()}</div></section><section class="work-end"><span>YOUR NEXT PROJECT</span><a href="#contact">Let’s make<br><em>the next one.</em> ${arrow}</a></section></div>`}
-document.addEventListener('click',e=>{const muteEl=e.target.closest('.archive-mute');if(muteEl){e.preventDefault();e.stopImmediatePropagation();const vid=muteEl.closest('.archive-image')?.querySelector('video');if(vid){vid.muted=!vid.muted;muteEl.innerHTML=vid.muted?mutedIcon:unmutedIcon;muteEl.setAttribute('aria-pressed',String(!vid.muted));muteEl.setAttribute('aria-label',vid.muted?'Unmute video':'Mute video')}return}const clickCard=e.target.closest('.archive-card[data-video-mode="click"]');if(clickCard){e.preventDefault();e.stopImmediatePropagation();const img=clickCard.querySelector('.archive-image'),vid=img?.querySelector('video');if(vid){if(vid.paused){vid.play().catch(()=>{});img.classList.add('playing')}else{vid.pause();img.classList.remove('playing')}}return}const cat=e.target.closest('[data-archive]');if(cat){const category=cat.dataset.archive;killGalleryTriggers();document.querySelectorAll('#archive-results video').forEach(v=>v.pause());document.querySelectorAll('[data-archive]').forEach(b=>{b.classList.toggle('selected',b.dataset.archive===category);b.setAttribute('aria-pressed',b.dataset.archive===category)});document.querySelector('#archive-results').innerHTML=archiveCollection(category);initLazyVideos();if(category==='PHOTOSHOOTS')initGalleryWipe('#archive-results .gallery-thumb');if(document.querySelector('.archive-card')&&window.gsap&&!reducedMotion.matches){interactionTween('.archive-card',{opacity:0,y:20},{opacity:1,y:0,duration:MOTION.reveal,stagger:MOTION.stagger,ease:MOTION.ease,overwrite:true});ScrollTrigger.refresh()}}});
-document.addEventListener('change',e=>{if(e.target.id==='vertical-sub-select'){const subCat=e.target.value;const category=document.querySelector('[data-archive].selected')?.dataset.archive||'VERTICAL';killGalleryTriggers();document.querySelectorAll('#archive-results video').forEach(v=>v.pause());document.querySelector('#archive-results').innerHTML=archiveCollection(category,subCat);initLazyVideos();if(document.querySelector('.archive-card')&&window.gsap&&!reducedMotion.matches){interactionTween('.archive-card',{opacity:0,y:20},{opacity:1,y:0,duration:MOTION.reveal,stagger:MOTION.stagger,ease:MOTION.ease,overwrite:true});ScrollTrigger.refresh()}}});
-document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('archive-mute')){e.preventDefault();e.target.click()}});
+document.addEventListener('click',e=>{
+  const muteEl=e.target.closest('.archive-mute');
+  if(muteEl){
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    const vid=muteEl.closest('.archive-image')?.querySelector('video');
+    if(vid){
+      vid.muted=!vid.muted;
+      muteEl.innerHTML=vid.muted?mutedIcon:unmutedIcon;
+      muteEl.setAttribute('aria-pressed',String(!vid.muted));
+      muteEl.setAttribute('aria-label',vid.muted?'Unmute video':'Mute video');
+    }
+    return;
+  }
+  const clickCard=e.target.closest('.archive-card[data-video-mode="click"]');
+  if(clickCard){
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    const img=clickCard.querySelector('.archive-image'),vid=img?.querySelector('video');
+    if(vid){
+      if(vid.paused){
+        vid.play().catch(()=>{});
+        img.classList.add('playing');
+      }else{
+        vid.pause();
+        img.classList.remove('playing');
+      }
+    }
+    return;
+  }
+  const cat=e.target.closest('[data-archive]');
+  if(cat){
+    const category=cat.dataset.archive;
+    verticalSubFilter = 'All';
+    killGalleryTriggers();
+    document.querySelectorAll('#archive-results video').forEach(v=>v.pause());
+    document.querySelectorAll('[data-archive]').forEach(b=>{
+      b.classList.toggle('selected',b.dataset.archive===category);
+      b.setAttribute('aria-pressed',b.dataset.archive===category);
+    });
+    document.querySelector('#archive-results').innerHTML=archiveCollection(category, 'All');
+    initLazyVideos();
+    if(category==='PHOTOSHOOTS')initGalleryWipe('#archive-results .gallery-thumb');
+    if(document.querySelector('.archive-card')&&window.gsap&&!reducedMotion.matches){
+      interactionTween('.archive-card',{opacity:0,y:20},{opacity:1,y:0,duration:MOTION.reveal,stagger:MOTION.stagger,ease:MOTION.ease,overwrite:true});
+      ScrollTrigger.refresh();
+    }
+    return;
+  }
+  const trigger=e.target.closest('#vertical-dropdown-trigger');
+  if(trigger){
+    e.preventDefault();
+    const menu=document.getElementById('vertical-dropdown-menu');
+    if(menu){
+      const isOpen=trigger.getAttribute('aria-expanded')==='true';
+      trigger.setAttribute('aria-expanded',String(!isOpen));
+      if(isOpen){
+        menu.setAttribute('hidden','');
+      }else{
+        menu.removeAttribute('hidden');
+        const selectedOpt=menu.querySelector('.custom-dropdown-option.selected')||menu.querySelector('.custom-dropdown-option');
+        selectedOpt?.focus();
+      }
+    }
+    return;
+  }
+  const option=e.target.closest('[data-vertical-option]');
+  if(option){
+    e.preventDefault();
+    const subCat=option.dataset.verticalOption;
+    setVerticalSubFilter(subCat);
+    return;
+  }
+  const customDropdown=e.target.closest('#vertical-custom-dropdown');
+  if(!customDropdown){
+    const trig=document.getElementById('vertical-dropdown-trigger');
+    const menu=document.getElementById('vertical-dropdown-menu');
+    if(trig && menu && trig.getAttribute('aria-expanded')==='true'){
+      trig.setAttribute('aria-expanded','false');
+      menu.setAttribute('hidden','');
+    }
+  }
+});
+document.addEventListener('keydown',e=>{
+  const trigger=document.getElementById('vertical-dropdown-trigger');
+  const menu=document.getElementById('vertical-dropdown-menu');
+  const isOpen=trigger && trigger.getAttribute('aria-expanded')==='true';
+
+  if(e.key==='Escape' && isOpen){
+    e.preventDefault();
+    trigger.setAttribute('aria-expanded','false');
+    menu?.setAttribute('hidden','');
+    trigger.focus();
+    return;
+  }
+  if(isOpen && (e.key==='ArrowDown' || e.key==='ArrowUp')){
+    e.preventDefault();
+    const options=Array.from(menu?.querySelectorAll('.custom-dropdown-option') || []);
+    if(!options.length)return;
+    const currentIndex=options.indexOf(document.activeElement);
+    let nextIndex=0;
+    if(e.key==='ArrowDown'){
+      nextIndex=currentIndex<options.length-1?currentIndex+1:0;
+    }else{
+      nextIndex=currentIndex>0?currentIndex-1:options.length-1;
+    }
+    options[nextIndex].focus();
+    return;
+  }
+  if(isOpen && (e.key==='Enter'||e.key===' ')){
+    const activeOpt=document.activeElement?.closest('[data-vertical-option]');
+    if(activeOpt){
+      e.preventDefault();
+      const subCat=activeOpt.dataset.verticalOption;
+      setVerticalSubFilter(subCat);
+      return;
+    }
+  }
+  if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('archive-mute')){
+    e.preventDefault();
+    e.target.click();
+  }
+});
 document.addEventListener('pointerenter',e=>{const card=e.target.closest?.('.archive-card[data-video-mode="hover"]');if(!card||!supportsHoverReveal())return;const vid=card.querySelector('video');if(vid&&vid.paused){vid.play().catch(()=>{})}},true);
 document.addEventListener('pointerleave',e=>{const card=e.target.closest?.('.archive-card[data-video-mode="hover"]');if(!card)return;const vid=card.querySelector('video');if(vid&&!vid.paused){vid.pause()}},true);
 function servicePage(){return `${pageHead('What we do','The whole picture.','Bring us a thought. We’ll take it through creative development, production and the final finishing touches.')}${serviceSection()}<section class="section intro"><div><span class="eyebrow">Built around the idea</span><div class="intro-photo"><img src="assets/think.jpg" alt="Behind the scenes on set" loading="lazy" width="576" height="1024"></div></div><div><h2 class="reveal">The right people.<br>For the right film.</h2><p>From casting and art direction to specialist post-production, we build the team around what your project needs.</p><p>For high-end grading and online finishing, we collaborate with partners including Prime Focus, Famous, Splice Studios and Nube. The partner depends on the project.</p></div></section>${closeSection()}`}
