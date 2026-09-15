@@ -326,3 +326,22 @@ input::placeholder,textarea::placeholder{color:var(--muted);opacity:.75}
  .services-hero{padding:60px 6% 30px}
  .services-cta{padding:60px 6%;margin:40px 3% 60px}
 }
+
+/* What Brands Say section on Homepage */
+.brands-hero{position:relative;overflow:hidden;background:#111110;color:#fff;border-radius:28px;margin:75px 3% 90px;padding:90px 7%;min-height:360px;display:flex;align-items:center}
+.brands-hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.brands-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:78% 42%;opacity:.45}
+.brands-hero-bg:after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,#111110 38%,rgba(17,17,16,.65) 68%,transparent)}
+.brands-hero-inner{position:relative;z-index:1;max-width:800px}
+.brands-hero-inner .eyebrow{color:#aaa;margin-bottom:20px}
+.brands-hero-inner h2{font-size:clamp(40px,5.5vw,76px);line-height:1.05;letter-spacing:-.055em;font-weight:500;margin:0 0 16px;color:#fff}
+.brands-hero-inner h2 em{font-family:Georgia,serif;font-style:italic;font-weight:400;color:var(--accent)}
+.brands-hero-inner p{font-size:clamp(16px,1.8vw,22px);line-height:1.5;color:#b4b5b2;margin:0;letter-spacing:-.01em}
+@media(max-width:760px){
+ .brands-hero{margin:40px 3% 60px;padding:60px 6%;min-height:280px;border-radius:20px}
+ .brands-hero-bg img{object-position:60% 50%;opacity:.35}
+ .brands-hero-bg:after{background:linear-gradient(180deg,rgba(17,17,16,.92) 0%,rgba(17,17,16,.75) 100%)}
+ .brands-hero-inner h2{font-size:clamp(32px,8.5vw,52px)}
+ .brands-hero-inner p{font-size:15px}
+}
+
