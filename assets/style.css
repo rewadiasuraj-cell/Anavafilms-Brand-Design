@@ -225,8 +225,7 @@ nav.workflow-nav{display:flex;position:static;flex-direction:row;flex-wrap:wrap;
 [data-theme="dark"] .pill.light{background:var(--surface);color:var(--ink)}
 [data-theme="dark"] .work-end>a,[data-theme="dark"] .text-link{color:var(--ink)}
 [data-theme="dark"] img,[data-theme="dark"] video{filter:brightness(.92)}
-[data-theme="dark"] header .wordmark img{filter:brightness(0) invert(1)}
-[data-theme="dark"] footer .wordmark{background:#fff;padding:8px 12px;border-radius:8px;display:inline-block}
+[data-theme="dark"] .wordmark img{filter:none;mix-blend-mode:normal}
 #theme-toggle{position:fixed;right:22px;bottom:22px;z-index:999;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.15);transition:background var(--feedback-duration) var(--feedback-ease),color var(--feedback-duration) var(--feedback-ease),transform .2s}
 #theme-toggle:hover{transform:scale(1.06)}
 #theme-toggle:active{transform:scale(.96)}
