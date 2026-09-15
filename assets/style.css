@@ -276,6 +276,11 @@ input::placeholder,textarea::placeholder{color:var(--muted);opacity:.75}
 .archive-grid.events-cols{grid-template-columns:repeat(3,minmax(0,1fr))}
 .archive-grid.vertical-cols .archive-card.portrait{max-width:none;justify-self:auto;margin-top:0}
 .archive-grid.vertical-cols .archive-card.portrait .archive-image{aspect-ratio:3/4}
+.archive-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;opacity:1;transition:opacity .4s ease;pointer-events:none}
+.archive-card[data-video-mode="hover"].playing .archive-poster{opacity:0}
+@media(hover: hover) and (pointer: fine){
+ .archive-card[data-video-mode="hover"]:hover .archive-poster{opacity:0}
+}
 .archive-card[data-video-mode="click"] .archive-image{filter:grayscale(1);transition:filter .4s ease}
 .archive-card[data-video-mode="click"]:hover .archive-image,.archive-card[data-video-mode="click"] .archive-image.playing{filter:grayscale(0)}
 .archive-image.playing .archive-play{display:none}
