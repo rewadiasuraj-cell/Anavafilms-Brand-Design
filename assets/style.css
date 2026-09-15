@@ -192,7 +192,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #bd3f24;outline-offset:4p
 .person small{display:block;line-height:1.6}
 @media(max-width:760px){header .wordmark img{width:140px}header .nav-cta{margin-right:6px;padding:10px 12px}header .nav-cta span{margin-left:12px}footer .wordmark img{width:180px}}
 @media(max-width:360px){header .wordmark img{width:120px}}
-@media(min-width:761px) and (max-width:1000px){header .wordmark img{width:170px}header nav{gap:18px}}
+@media(min-width:761px) and (max-width:1000px){header .wordmark img{width:170px}header nav{gap:14px}header nav a{font-size:10px;white-space:nowrap}header .nav-cta{padding:7px 6px 7px 12px;font-size:10px;gap:6px}header{padding:0 20px}}
 header .nav-cta{display:inline-flex;align-items:center;white-space:nowrap;gap:12px;flex-shrink:0}
 header .nav-cta span{margin-left:0}
 @media(max-width:360px){header .wordmark img{width:110px}header .nav-cta{padding:10px;font-size:13px;gap:8px}}
