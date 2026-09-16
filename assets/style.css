@@ -186,7 +186,7 @@ h1,h2,h3,p,.connect-link span{overflow-wrap:break-word}
  .section-heading h2,h2.big{font-size:clamp(34px,9vw,58px);line-height:1.12}
  .section-heading{align-items:flex-start;flex-wrap:wrap;gap:24px}
  .intro h2{font-size:clamp(34px,9vw,44px)}
- .philosophy-cta{width:100%;max-width:350px;height:60px;min-width:0;margin:32px auto 0}
+ .intro .philosophy-cta{width:auto;min-width:0;height:52px;padding:0 24px;font-size:14px;gap:8px;margin:32px auto 0}
  .closing h2{font-size:clamp(40px,11vw,72px)}
  .card-image,.card:nth-child(even) .card-image{height:auto;aspect-ratio:4/3}
  .card img,.film img,.film video{height:100%;display:block}
